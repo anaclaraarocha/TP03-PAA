@@ -1,10 +1,10 @@
 #include <stdio.h>
-#include "produtoCartesiano.h"
+#include "leituraDeArquivo.h"
+
 void main(){
-    
+
+    FILE *humano = fopen("human.txt", "r");
+    lerArquivo(humano);
+    //lerArquivoPrincipal("dog.txt", char **arrayTextParameter)
+    fclose(humano);
 }
-
-
-/*a,b,c,d
-aa,ab,ac,ad,ba,bb,bc,bd,ca,cb,cc,cd,da,db,dc,dd
-aaa,aab,aac,aad,aba,abb,abc,abd,aca,acb,acc,acd,ada,adb,adc,add*/
