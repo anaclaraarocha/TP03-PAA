@@ -1,74 +1,95 @@
-#include <stdio.h>
-#include <string.h>
-#include <stdlib.h>
-
-void KMP(const char* text, const char* pattern, int m, int n)
+/* C Program for Bad Character Heuristic of Boyer
+   Moore String Matching Algorithm */
+# include <limits.h>
+# include <string.h>
+# include <stdio.h>
+ 
+# define NO_OF_CHARS 256
+ 
+// A utility function to get maximum of two integers
+int max (int a, int b) { return (a > b)? a: b; }
+ 
+// The preprocessing function for Boyer Moore's
+// bad character heuristic
+void badCharHeuristic( char *str, int size,
+                        int badchar[NO_OF_CHARS])
 {
-    printf("aqui");
-    int varAux = 0;
-    // caso base 1: o padrão é NULL ou vazio
-    if (*pattern == '\0' || n == 0) {
-        printf("The pattern occurs with shift 0");
-    }
+    int i;
  
-    // caso base 2: o texto é NULL ou o comprimento do texto é menor que o do padrão
-    if (*text == '\0' || n > m) {
-        printf("Pattern not found");
-    }
+    // Initialize all occurrences as -1
+    for (i = 0; i < NO_OF_CHARS; i++)
+         badchar[i] = -1;
  
-    // next[i] armazena o índice da próxima melhor correspondência parcial
-    int next[n + 1];
- 
-    for (int i = 0; i < n + 1; i++) {
-        next[i] = 0;
-    }
- 
-    for (int i = 1; i < n; i++)
-    {
-        int j = next[i + 1];
- 
-        while (j > 0 && pattern[j] != pattern[i]) {
-            j = next[j];
-        }
- 
-        if (j > 0 || pattern[j] == pattern[i]) {
-            next[i + 1] = j + 1;
-        }
-    }
- 
-    for (int i = 0, j = 0; i < m; i++) // m é o tamanho do padrão; roda o for com a quantidade de caracteres que tem que buscar
-    {
-        if (*(text + i) == *(pattern + j)) 
-        {
-            if (++j == n) {
-                varAux++;
-                
-                //printf("The pattern occurs with shift %d\n", i - j + 1);
-            }
-        }
-        else if (j > 0)
-        {
-            j = next[j];
-            i--;    // já que `i` será incrementado na próxima iteração
-        }
-    }
-    printf("varAux: %d", varAux);
-
+    // Fill the actual value of last occurrence
+    // of a character
+    for (i = 0; i < size; i++)
+         badchar[(int) str[i]] = i;
 }
  
-// Programa para implementar o algoritmo KMP em C
-// int main(void)
-// {
-//     char* text = "ABCABAABCABACAB";
-//     char* pattern = "CAB";
+/* A pattern searching function that uses Bad
+   Character Heuristic of Boyer Moore Algorithm */
+void search( char *txt,  char *pat)
+{
+    int numero = 0;
+    int m = strlen(pat);
+    int n = strlen(txt);
  
-//     int n = strlen(text);
-//     int m = strlen(pattern);
+    int badchar[NO_OF_CHARS];
  
-//     KMP(text, pattern, n, m);
+    /* Fill the bad character array by calling
+       the preprocessing function badCharHeuristic()
+       for given pattern */
+    badCharHeuristic(pat, m, badchar);
  
-//     return 0;
-// }
-
-
-   
+    int s = 0;  // s is shift of the pattern with
+                // respect to text
+    while(s <= (n - m))
+    {
+        int j = m-1;
+ 
+        /* Keep reducing index j of pattern while
+           characters of pattern and text are
+           matching at this shift s */
+        while(j >= 0 && pat[j] == txt[s+j])
+            j--;
+ 
+        /* If the pattern is present at current
+           shift, then index j will become -1 after
+           the above loop */
+        if (j < 0)
+        {
+            numero++;
+            //printf("\n pattern occurs at shift = %d", s);
+ 
+            /* Shift the pattern so that the next
+               character in text aligns with the last
+               occurrence of it in pattern.
+               The condition s+m < n is necessary for
+               the case when pattern occurs at the end
+               of text */
+            s += (s+m < n)? m-badchar[txt[s+m]] : 1;
+ 
+        }
+ 
+        else
+            /* Shift the pattern so that the bad character
+               in text aligns with the last occurrence of
+               it in pattern. The max function is used to
+               make sure that we get a positive shift.
+               We may get a negative shift if the last
+               occurrence  of bad character in pattern
+               is on the right side of the current
+               character. */
+            s += max(1, j - badchar[txt[s+j]]);
+    }
+    printf("NUmero: %d\n",numero);
+}
+ 
+/* Driver program to test above function */
+int main()
+{
+    char txt[] = "ABCAAABCDBBBBBB";
+    char pat[] = "AAB";
+    search(txt, pat);
+    return 0;
+}

@@ -1,5 +1,4 @@
-#include <stdio.h>
-#define MAX_FILE_NAME 100
+#include "comparacao.h"
   
 int main()
 {
