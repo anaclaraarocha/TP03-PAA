@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include "leituraDeArquivo.h"
+#include "comparacao.h"
 
 void main(){
 
