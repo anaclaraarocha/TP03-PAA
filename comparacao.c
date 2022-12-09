@@ -3,8 +3,7 @@
 # include <limits.h>
 # include <string.h>
 # include <stdio.h>
- 
-# define NO_OF_CHARS 256
+#include "comparacao.h"
  
 // A utility function to get maximum of two integers
 int max (int a, int b) { return (a > b)? a: b; }
@@ -28,10 +27,10 @@ void badCharHeuristic( char *str, int size,
  
 /* A pattern searching function that uses Bad
    Character Heuristic of Boyer Moore Algorithm */
-void search( char *txt,  char *pat)
-{
+int search( char *txt,  char *pat){
+   
     int numero = 0;
-    int m = strlen(pat);
+    int m = 1;
     int n = strlen(txt);
  
     int badchar[NO_OF_CHARS];
@@ -82,14 +81,18 @@ void search( char *txt,  char *pat)
                character. */
             s += max(1, j - badchar[txt[s+j]]);
     }
-    printf("NUmero: %d\n",numero);
+    return numero;
 }
  
-/* Driver program to test above function */
+/* Driver program to test above function 
 int main()
 {
-    char txt[] = "ABCAAABCDBBBBBB";
-    char pat[] = "AAB";
-    search(txt, pat);
+    char DNAHumano[6000000];
+    for(int i =0;i<6000000;i++){
+        DNAHumano[i] = 'A';
+    }
+    char pat[] = "A";
+    int numero = search(DNAHumano, pat);
+    printf("numero:%d",numero);
     return 0;
-}
+}*/

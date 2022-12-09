@@ -1,5 +1,10 @@
 #include <stdio.h>
 #include <string.h>
-#include <stdlib.h>
+#include <stdlib.h> 
+# define NO_OF_CHARS 256
 
-void KMP(char* text,char* pattern, int m, int n);
+int max (int a, int b);
+void badCharHeuristic( char *str, int size,
+                        int badchar[NO_OF_CHARS]);
+
+int search( char *txt,  char *pat);

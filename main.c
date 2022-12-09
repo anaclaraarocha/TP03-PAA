@@ -4,7 +4,7 @@
 
 void main(){
 
-    FILE *humano = fopen("human.txt", "r");
+    FILE *humano = fopen("teste.txt", "r");
     lerArquivo(humano);
     //lerArquivoPrincipal("dog.txt", char **arrayTextParameter)
     fclose(humano);
