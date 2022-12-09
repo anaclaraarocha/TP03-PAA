@@ -30,7 +30,7 @@ void badCharHeuristic( char *str, int size,
 int search( char *txt,  char *pat){
    
     int numero = 0;
-    int m = 1;
+    int m = strlen(pat);
     int n = strlen(txt);
  
     int badchar[NO_OF_CHARS];
@@ -84,14 +84,14 @@ int search( char *txt,  char *pat){
     return numero;
 }
  
-/* Driver program to test above function 
+ /*//Driver program to test above function 
 int main()
 {
     char DNAHumano[6000000];
     for(int i =0;i<6000000;i++){
         DNAHumano[i] = 'A';
     }
-    char pat[] = "A";
+    char pat[] = "AA";
     int numero = search(DNAHumano, pat);
     printf("numero:%d",numero);
     return 0;
