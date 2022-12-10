@@ -1,51 +1,59 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
 #include "leituraDeArquivo.h"
-#include "comparacao.h"
 
 void lerArquivo(FILE *humano){
     
-    int qntRepeticoes,qntPadroes = 2;//esse tamanho dos padroes vai ser escolhido arbitrariamente
+    int qntRepeticoes,qntPadroes = 5;//esse tamanho dos padroes vai ser escolhido arbitrariamente
     int contador = 0;
     int tamanhoProdCartesiano = 2;
     char DNAHumano[6000000];
     char caracter;
+    int A[qntPadroes],B[qntPadroes];
 
 
-    char pat[tamanhoProdCartesiano];
+    //cria o produto cartesiano com o codigo do bijas
+    int total = pow(4,tamanhoProdCartesiano);
+    char** produtoCartesiano = (char** ) malloc(sizeof(char*)*total);
+    for(int i =0;i<total;i++){
+        produtoCartesiano[i] = (char*)malloc(tamanhoProdCartesiano+1);
+    }
+    gerarProdutoCartesiano(produtoCartesiano,tamanhoProdCartesiano);
 
-    char padrao[2][2] = {{'A','A'},{'T','G'}};
-    int qntCada[4] ={0,0,0,0};
-    //int qntCada[4] ={0,0,0,0};
 
-
+    //preenche o vetor DNAHumano com o arquivo human.txt
     while((caracter = fgetc(humano)) != EOF){
         
         DNAHumano[contador] = caracter;
         contador++;
     }
+
+    selecionaPadrao(qntPadroes,A,B,produtoCartesiano,total,DNAHumano);
+
+
     
-    printf("Contador: %d\n",contador);
-    for(int i =0; i < qntPadroes;i++){
-        for(int j =0; j < tamanhoProdCartesiano;j++){
-            pat[j] = padrao[i][j];
-            printf("pat: %c\n",pat[i]);
+    
+}
 
-        }
-        qntCada[i] = search(DNAHumano, pat);
-        printf("qnt cada:%d\n",qntCada[i]);
-        //pat[0] = padrao[i];
-        //strcpy(pat,padrao[i]);
-        //pat[i] = padrao[i][i];
-        //qntCada[i] = search(DNAHumano, pat);
-        //printf("Pat:%s\n",pat);
-        //printf("Qnt cada: %d",qntCada[i]);
-        //printf("Padrao 1: %d",padrao[0][i]);
+void selecionaPadrao(int qntPadroes,int *A,int *B, char** produtoCartesiano,int tamanhoVetorCartesiano,
+                    char *DNAHumano){
 
+
+    char padroes[qntPadroes];
+
+    int posicoesSelecionadas[qntPadroes];
+    srand(time(NULL));
+    for(int i =0; i <qntPadroes;i++){
+        posicoesSelecionadas[i] = rand()%tamanhoVetorCartesiano;
     }
-    //char aux[] = "TT";
-    //int numeroTeste = search(DNAHumano, pat);
-    qntRepeticoes = qntCada[0]+qntCada[1];
-    printf("Qnt repeticoes: %d",qntRepeticoes);
+
+    for(int i =0; i < qntPadroes;i++){
+        for(int j =0; j < qntPadroes;j++){
+            strcpy(padroes, produtoCartesiano[posicoesSelecionadas[i]]);
+        }
+        printf("Padroes: %s \n",padroes);
+        A[i] = search(DNAHumano, padroes);
+        printf("qnt cada:%d\n",A[i]);
+        printf("\n");
+    }
+
+
 }
