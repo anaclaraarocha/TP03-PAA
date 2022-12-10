@@ -7,8 +7,11 @@
 #include "produtoCartesiano.h"
 
 
-void lerArquivo(FILE *humano);
+void frequenciaHumano(FILE *humano,int *A);
+void frequenciaChimpanzee(FILE *humano,int *A);
+void frequenciaDog(FILE *humano,int *A);
+void similaridade(FILE *humano,FILE *chimpanzee,FILE *dog);
 void lerArquivoPrincipal(char fileName, char **arrayTextParameter);
 
-void selecionaPadrao(int qntPadroes,int *A,int *B, char** produtoCartesiano,int tamanhoVetorCartesiano,
+void selecionaPadrao(int qntPadroes,int *vetorFrequencia, char** produtoCartesiano,int tamanhoVetorCartesiano,
                     char *DNAHumano);
