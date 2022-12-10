@@ -15,3 +15,6 @@ void lerArquivoPrincipal(char fileName, char **arrayTextParameter);
 
 void selecionaPadrao(int qntPadroes,int *vetorFrequencia, char** produtoCartesiano,int tamanhoVetorCartesiano,
                     char *DNAHumano);
+                    
+void selecionaPadrao2(int qntPadroes,int *vetorFrequencia, char** produtoCartesiano,int tamanhoVetorCartesiano,
+                    char *DNAHumano);

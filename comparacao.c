@@ -33,7 +33,7 @@ int search( char *txt,  char *pat){
     int m = strlen(pat);
     int n = strlen(txt);
  
-    int badchar[NO_OF_CHARS];
+    int badchar[NO_OF_CHARS] = {};
  
     /* Fill the bad character array by calling
        the preprocessing function badCharHeuristic()
@@ -81,6 +81,9 @@ int search( char *txt,  char *pat){
                character. */
             s += max(1, j - badchar[txt[s+j]]);
     }
+    m = 0;
+    n = 0;
+    s = 0;
     return numero;
 }
  
