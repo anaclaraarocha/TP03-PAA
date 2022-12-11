@@ -6,11 +6,16 @@
 #include "produtoCartesiano.h"
 #include "similaridade.h"
 
-void frequenciaHumano(FILE *humano,int *A,int qntPadroes,int tamanhoProdCartesiano, int *posicoes);
-void frequenciaChimpanzee(FILE *humano,int *A,int qntPadroes,int tamanhoProdCartesiano, int *posicoes);
+void frequenciaHumano(FILE *humano,int *A,int qntPadroes,int tamanhoProdCartesiano, int *posicoes,
+    char **produtoCartesiano,int total);
+
+void frequenciaChimpanzee(FILE *humano,int *A,int qntPadroes,int tamanhoProdCartesiano, int *posicoes,
+    char **produtoCartesiano2,int total2);
+
 void frequenciaDog(FILE *dog,int *A,int qntPadroes3,int tamanhoProdCartesiano3,
-    int *posicoesSelecionadas);
-void similaridade(FILE *humano,FILE *chimpanzee,FILE *dog);
+    int *posicoesSelecionadas3,char **produtoCartesiano3,int total3);
+
+void similaridade(FILE *humano,FILE *chimpanzee,FILE *dog,int tamanhoProdCartesiano,char **prodCartesiano);
 void lerArquivoPrincipal(char fileName, char **arrayTextParameter);
 
 void selecionaPadrao(int qntPadroes,int *vetorFrequencia, char** produtoCartesiano,int tamanhoVetorCartesiano,

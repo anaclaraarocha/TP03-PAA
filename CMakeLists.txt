@@ -12,6 +12,8 @@ add_executable(TP03_PAA
         leituraDeArquivo.h
         main.c
         produtoCartesiano.c
-        produtoCartesiano.h)
+        produtoCartesiano.h
+        similaridade.c
+        similaridade.h)
 
 target_link_libraries(TP03_PAA PRIVATE m)

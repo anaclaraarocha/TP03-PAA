@@ -77,6 +77,13 @@ build CMakeFiles/TP03_PAA.dir/produtoCartesiano.c.o: C_COMPILER__TP03_PAA_Debug 
   OBJECT_DIR = CMakeFiles/TP03_PAA.dir
   OBJECT_FILE_DIR = CMakeFiles/TP03_PAA.dir
 
+build CMakeFiles/TP03_PAA.dir/similaridade.c.o: C_COMPILER__TP03_PAA_Debug /home/douglas/Documents/GitHub/TP03-PAA/similaridade.c || cmake_object_order_depends_target_TP03_PAA
+  DEP_FILE = CMakeFiles/TP03_PAA.dir/similaridade.c.o.d
+  FLAGS = -g -fdiagnostics-color=always -std=gnu11
+  INCLUDES = -I/home/douglas/Documents/GitHub/TP03-PAA/.
+  OBJECT_DIR = CMakeFiles/TP03_PAA.dir
+  OBJECT_FILE_DIR = CMakeFiles/TP03_PAA.dir
+
 
 # =============================================================================
 # Link build statements for EXECUTABLE target TP03_PAA
@@ -85,7 +92,7 @@ build CMakeFiles/TP03_PAA.dir/produtoCartesiano.c.o: C_COMPILER__TP03_PAA_Debug 
 #############################################
 # Link the executable TP03_PAA
 
-build TP03_PAA: C_EXECUTABLE_LINKER__TP03_PAA_Debug CMakeFiles/TP03_PAA.dir/comparacao.c.o CMakeFiles/TP03_PAA.dir/leituraDeArquivo.c.o CMakeFiles/TP03_PAA.dir/main.c.o CMakeFiles/TP03_PAA.dir/produtoCartesiano.c.o
+build TP03_PAA: C_EXECUTABLE_LINKER__TP03_PAA_Debug CMakeFiles/TP03_PAA.dir/comparacao.c.o CMakeFiles/TP03_PAA.dir/leituraDeArquivo.c.o CMakeFiles/TP03_PAA.dir/main.c.o CMakeFiles/TP03_PAA.dir/produtoCartesiano.c.o CMakeFiles/TP03_PAA.dir/similaridade.c.o
   FLAGS = -g
   LINK_LIBRARIES = -lm
   OBJECT_DIR = CMakeFiles/TP03_PAA.dir

@@ -1,8 +1,9 @@
 #include "leituraDeArquivo.h"
 
 
-void similaridade(FILE *humano,FILE *chimpanzee,FILE *dog){
-    int qntPadroes = 1000 , tamanhoProdCartesiano = 10;
+void similaridade(FILE *humano,FILE *chimpanzee,FILE *dog,int tamanhoProdCartesiano,
+    char **prodCartesiano){
+    int qntPadroes = 10;
     int freqHumano[qntPadroes],freqChimpanze[qntPadroes],freqDog[qntPadroes];
     //long int numerador=0;
     //long double somaDenominador1=0.0,somaDenominador2=0.0;
@@ -20,12 +21,16 @@ void similaridade(FILE *humano,FILE *chimpanzee,FILE *dog){
     for(int i =0; i <qntPadroes;i++){
         posicoesSelecionadas[i] = rand()%tamanhoVetorCartesiano;
     }
+    //printf("entra\n");
     //printf("Humano:\n");
-    frequenciaHumano(humano,freqHumano,qntPadroes,tamanhoProdCartesiano,posicoesSelecionadas);
+    frequenciaHumano(humano,freqHumano,qntPadroes,tamanhoProdCartesiano,posicoesSelecionadas,
+        prodCartesiano,tamanhoProdCartesiano);
     //printf("Chimpanzee:\n");
-    frequenciaChimpanzee(chimpanzee,freqChimpanze,qntPadroes,tamanhoProdCartesiano,posicoesSelecionadas);
+    frequenciaChimpanzee(chimpanzee,freqChimpanze,qntPadroes,tamanhoProdCartesiano,posicoesSelecionadas,
+        prodCartesiano,tamanhoProdCartesiano);
     //printf("Dog:\n");
-    frequenciaDog(dog,freqDog,qntPadroes,tamanhoProdCartesiano,posicoesSelecionadas);
+    frequenciaDog(dog,freqDog,qntPadroes,tamanhoProdCartesiano,posicoesSelecionadas,
+        prodCartesiano,tamanhoProdCartesiano);
 
     similaridadeHumChimp(qntPadroes,freqHumano,freqChimpanze);
     similaridadeDogChimp(qntPadroes,freqDog,freqChimpanze);
@@ -37,7 +42,7 @@ void similaridade(FILE *humano,FILE *chimpanzee,FILE *dog){
 
 
 void frequenciaHumano(FILE *humano,int *teste,int qntPadroes,int tamanhoProdCartesiano,
-    int *posicoesSelecionadas){
+    int *posicoesSelecionadas, char **produtoCartesiano1,int total){
     
     int qntRepeticoes;//esse tamanho dos padroes vai ser escolhido arbitrariamente
     int contador = 0;
@@ -46,13 +51,13 @@ void frequenciaHumano(FILE *humano,int *teste,int qntPadroes,int tamanhoProdCart
     //int A[qntPadroes];
 
 
-    //cria o produto cartesiano com o codigo do bijas
+    /*//cria o produto cartesiano com o codigo do bijas
     int total = pow(4,tamanhoProdCartesiano);
     char** produtoCartesiano1 = (char** ) malloc(sizeof(char*)*total);
     for(int i =0;i<total;i++){
         produtoCartesiano1[i] = (char*)malloc(tamanhoProdCartesiano+1);
     }
-    gerarProdutoCartesiano(produtoCartesiano1,tamanhoProdCartesiano);
+    gerarProdutoCartesiano(produtoCartesiano1,tamanhoProdCartesiano);*/
 
 
     //preenche o vetor DNAHumano com o arquivo human.txt
@@ -61,19 +66,25 @@ void frequenciaHumano(FILE *humano,int *teste,int qntPadroes,int tamanhoProdCart
         DNAHumano[contador] = caracter;
         contador++;
     }
-
+    //printf("vai ate humano\n");
     //printf("Padroes usados para o humano:\n");
+
+    /*for(int i =0; i<qntPadroes;i++){
+        printf("%d ",posicoesSelecionadas[i]);
+    }
+    printf("\n");*/
     selecionaPadrao(qntPadroes,teste,produtoCartesiano1,total,DNAHumano,posicoesSelecionadas);   
     //printf("======================================\n");
-    for(int i = 0; i < total; i++){
+    
+    /*for(int i = 0; i < total; i++){
         free(produtoCartesiano1[i]);
     }
 
-    free(produtoCartesiano1);
+    free(produtoCartesiano1);*/
 }
 
 void frequenciaChimpanzee(FILE *chimpanze,int *A,int qntPadroes2,int tamanhoProdCartesiano,
-    int *posicoesSelecionadas2){
+    int *posicoesSelecionadas2,char **produtoCartesiano2,int total2){
     
     int qntRepeticoes = 0;//esse tamanho dos padroes vai ser escolhido arbitrariamente
     int contador = 0;
@@ -82,13 +93,13 @@ void frequenciaChimpanzee(FILE *chimpanze,int *A,int qntPadroes2,int tamanhoProd
     //int A[qntPadroes2];
 
 
-    //cria o produto cartesiano com o codigo do bijas
+    /*//cria o produto cartesiano com o codigo do bijas
     int total2 = pow(4,tamanhoProdCartesiano);
     char** produtoCartesiano2 = (char** ) malloc(sizeof(char*)*total2);
     for(int i =0;i<total2;i++){
         produtoCartesiano2[i] = (char*)malloc(tamanhoProdCartesiano+1);
     }
-    gerarProdutoCartesiano(produtoCartesiano2,tamanhoProdCartesiano);
+    gerarProdutoCartesiano(produtoCartesiano2,tamanhoProdCartesiano);*/
 
 
     //preenche o vetor DNAChimpanze com o arquivo human.txt
@@ -100,19 +111,20 @@ void frequenciaChimpanzee(FILE *chimpanze,int *A,int qntPadroes2,int tamanhoProd
     //printf("\nContador: %d\n",contador);
 
     //printf("Padroes usados pelo chimpanze:\n");
+    //printf("Vai ate chim\n");
     selecionaPadrao(qntPadroes2,A,produtoCartesiano2,total2,DNAChimpanze,posicoesSelecionadas2); 
 
     //printf("=======================");
 
-    for(int i = 0; i < total2-1; i++){
+    /*for(int i = 0; i < total2-1; i++){
         free(produtoCartesiano2[i]);
     }
 
-    free(produtoCartesiano2);
+    free(produtoCartesiano2);*/
 }
 
 void frequenciaDog(FILE *dog,int *A,int qntPadroes3,int tamanhoProdCartesiano3,
-    int *posicoesSelecionadas3){
+    int *posicoesSelecionadas3,char **produtoCartesiano3,int total3){
     
     int qntRepeticoes;//esse tamanho dos padroes vai ser escolhido arbitrariamente
     int contador = 0;;
@@ -121,13 +133,13 @@ void frequenciaDog(FILE *dog,int *A,int qntPadroes3,int tamanhoProdCartesiano3,
     //int A[qntPadroes3];
 
 
-    //cria o produto cartesiano com o codigo do bijas
+    /*//cria o produto cartesiano com o codigo do bijas
     int total3 = pow(4,tamanhoProdCartesiano3);
     char** produtoCartesiano3 = (char** ) malloc(sizeof(char*)*total3);
     for(int i =0;i<total3;i++){
         produtoCartesiano3[i] = (char*)malloc(tamanhoProdCartesiano3+1);
     }
-    gerarProdutoCartesiano(produtoCartesiano3,tamanhoProdCartesiano3);
+    gerarProdutoCartesiano(produtoCartesiano3,tamanhoProdCartesiano3);*/
 
 
     //preenche o vetor DNADog com o arquivo human.txt
@@ -138,13 +150,14 @@ void frequenciaDog(FILE *dog,int *A,int qntPadroes3,int tamanhoProdCartesiano3,
     }
 
     //printf("Padroes usados pelo dog:\n");
+    //printf("vai ate dog\n");
     selecionaPadrao(qntPadroes3,A,produtoCartesiano3,total3,DNADog,posicoesSelecionadas3);  
     //printf("=============\n");
-    for(int i = 0; i < total3-1; i++){
+    /*for(int i = 0; i < total3-1; i++){
         free(produtoCartesiano3[i]);
     }
 
-    free(produtoCartesiano3); 
+    free(produtoCartesiano3);*/
 }
 
 void selecionaPadrao(int qntPadroes,int *vetorFrequencia, char** produtoCartesiano,int tamanhoVetorCartesiano,
@@ -153,11 +166,14 @@ void selecionaPadrao(int qntPadroes,int *vetorFrequencia, char** produtoCartesia
 
     char padroes[qntPadroes];
 
-    for(int i =0; i < qntPadroes;i++){
-        for(int j =0; j < qntPadroes;j++){
+
+    for(int i = 0; i < qntPadroes;i++){
+        //for(int j =0; j < qntPadroes-1;j++){
+            //printf("posicoesSelecionadas[%d]: %d \n",i,posicoesSelecionadas0[i]);
+
             strcpy(padroes, produtoCartesiano[posicoesSelecionadas0[i]]);
-        }
-        //printf("Padroes: %s\n",padroes);
+        
+        //printf("Padroes[%d]: %s\n",i,padroes);
         vetorFrequencia[i] = search(DNA, padroes);
     }
     
