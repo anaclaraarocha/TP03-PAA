@@ -81,9 +81,6 @@ int search( char *txt,  char *pat){
                character. */
             s += max(1, j - badchar[txt[s+j]]);
     }
-    m = 0;
-    n = 0;
-    s = 0;
     return numero;
 }
  

@@ -1,5 +1,6 @@
 {
     "files.associations": {
-        "comparacao.h": "c"
+        "comparacao.h": "c",
+        "similaridade.h": "c"
     }
 }
