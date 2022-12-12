@@ -21,21 +21,21 @@ int busca( char *textoCompleto,  char *padraoDeBusca){
 
    }
 
-   int s = 0;  
-   while(s <= (n - m)){
+   int deslocamento = 0;  
+   while(deslocamento <= (n - m)){
       int indiceBusca = m-1;
-      while(indiceBusca >= 0 && padraoDeBusca[indiceBusca] == textoCompleto[s+indiceBusca]){
+      while(indiceBusca >= 0 && padraoDeBusca[indiceBusca] == textoCompleto[deslocamento+indiceBusca]){
          indiceBusca--;
       }
       if (indiceBusca < 0){
          frequenciaPadrao++;
-         s += (s+m < n)? m-charNaoCompativel[textoCompleto[s+m]] : 1;
+         deslocamento += (deslocamento+m < n)? m-charNaoCompativel[textoCompleto[deslocamento+m]] : 1;
       }
       else
-         if(indiceBusca - charNaoCompativel[textoCompleto[s+indiceBusca]] < 1){
-            s++;
+         if(indiceBusca - charNaoCompativel[textoCompleto[deslocamento+indiceBusca]] < 1){
+            deslocamento++;
          }else{
-            s+=indiceBusca - charNaoCompativel[textoCompleto[s+indiceBusca]];
+            deslocamento+=indiceBusca - charNaoCompativel[textoCompleto[deslocamento+indiceBusca]];
          }
    }
    return frequenciaPadrao;

@@ -8,9 +8,9 @@ void main(){
 
     long double mediaHumanoChimp = 0, mediaHumanoDog = 0, mediaChimpDog = 0;
 
-    int tamanhoProdCartesiano = 2;
+    int tamanhoProdCartesiano = 10;
 
-    int qntSimulacoes = 100;
+    int qntSimulacoes = 10;
 
     int total = pow(4,tamanhoProdCartesiano);
     char** produtoCartesiano = (char** ) malloc(sizeof(char*)*total);
