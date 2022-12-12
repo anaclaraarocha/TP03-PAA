@@ -21,17 +21,3 @@ void generation(char **produtoCartesiano,int *i,char* gen,int rep,int tamanho){
         }
     }
 }
-
-/*void main(){
-    int total = pow(4,PSIZE);
-
-    char** produtoCartesiano = (char** ) malloc(sizeof(char*)*total);
-    for(int i =0;i<total;i++){
-        produtoCartesiano[i] = (char*)malloc(PSIZE+1);
-    }
-    gerarProdutoCartesiano(produtoCartesiano);
-    for(int i =0;i<total;i++){
-        printf("%s ",produtoCartesiano[i]);
-    }
-    printf("\n");
-}*/

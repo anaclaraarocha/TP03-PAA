@@ -2,6 +2,6 @@
 #include <stdlib.h>
 #include <math.h>
 
-void similaridadeHumChimp(int qntPadroes,int *freqHumano, int *freqChimpanze);
-void similaridadeHumDog(int qntPadroes,int *freqHumano, int *freqDog);
-void similaridadeDogChimp(int qntPadroes,int *freqDog, int *freqChimpanze);
+long double similaridadeHumChimp(int qntPadroes,int *freqHumano, int *freqChimpanze);
+long double similaridadeHumDog(int qntPadroes,int *freqHumano, int *freqDog);
+long double similaridadeDogChimp(int qntPadroes,int *freqDog, int *freqChimpanze);

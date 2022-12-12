@@ -1,7 +1,7 @@
 #include "similaridade.h"
 
 
-void similaridadeHumChimp(int qntPadroes,int *freqHumano, int *freqChimpanze){
+long double similaridadeHumChimp(int qntPadroes,int *freqHumano, int *freqChimpanze){
     long double resultadoHC = 0.0;
     long double soma1HC = 0.0;
     long double soma2HC = 0.0;
@@ -24,15 +24,13 @@ void similaridadeHumChimp(int qntPadroes,int *freqHumano, int *freqChimpanze){
     }
 
     modulo2HC = sqrt(soma2HC);
-
     similaridadeHC = (resultadoHC/(modulo1HC*modulo2HC));
 
-    printf("Similaridade Humano com Chimpazne: %Lf \n",similaridadeHC);
-    printf("\n");
+    return similaridadeHC;
 
 }
 
-void similaridadeHumDog(int qntPadroes,int *freqHumano, int *freqDog){
+long double similaridadeHumDog(int qntPadroes,int *freqHumano, int *freqDog){
     long double resultadoHD = 0.0;
     long double soma1HD = 0.0;
     long double soma2HD = 0.0;
@@ -58,12 +56,11 @@ void similaridadeHumDog(int qntPadroes,int *freqHumano, int *freqDog){
 
     similaridadeHD = (resultadoHD/(modulo1HD*modulo2HD));
 
-    printf("Similaridade Humano com Cachorro: %Lf \n",similaridadeHD);
-    printf("\n");
 
+    return similaridadeHD;
 }
 
-void similaridadeDogChimp(int qntPadroes,int *freqDog, int *freqChimpanze){
+long double similaridadeDogChimp(int qntPadroes,int *freqDog, int *freqChimpanze){
     long double resultadoDC = 0.0;
     long double soma1DC = 0.0;
     long double soma2DC = 0.0;
@@ -88,8 +85,7 @@ void similaridadeDogChimp(int qntPadroes,int *freqDog, int *freqChimpanze){
     modulo2DC = sqrt(soma2DC);
 
     similaridadeDC = (resultadoDC/(modulo1DC*modulo2DC));
-
-    printf("Similaridade Cachorro com Chimpanze: %Lf \n",similaridadeDC);
-    printf("\n");
+    
+    return similaridadeDC;
 
 }
